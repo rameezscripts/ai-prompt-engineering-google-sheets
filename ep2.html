@@ -1,0 +1,613 @@
+<!--
+  Developed by Rameez Scripts
+  WhatsApp: https://wa.me/923224083545 (For Custom Projects)
+  YouTube: https://www.youtube.com/@rameezimdad (Subscribe for more!)
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>EP 2 — Advanced AI Techniques for Google Sheets &amp; Apps Script</title>
+<link rel="icon" type="image/jpeg" href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiGXxCe0WNNedmFqSWeF761f7Kshhc-NP5ChRQKz9fr97cO8VaarvD0KlCwqHojJVBWv-RAxfOqMI5rD4H78KnARyOc6QgwL1nRRFWf5xNQ1d9F9HfAoLPPGlTyP0GwNl4n-INMEsWLQ4Y7zJtz5bOdAnc2ePH9-uCRgshlo6BsS6gJEz6fhrxL-5U5O3sX/s32/channels4_profile.jpg">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+  :root {
+    --navy-primary: #001f3f;
+    --navy-light: #003366;
+    --navy-accent: #0074D9;
+    --navy-hover: #002a52;
+    --success: #34a853;
+    --warning: #fbbc04;
+    --danger: #ea4335;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f7fa; color: #333; line-height: 1.6; }
+
+  .navbar { position: fixed; top: 0; left: 0; right: 0; background: var(--navy-primary); padding: 0 30px; height: 60px; display: flex; align-items: center; justify-content: space-between; z-index: 1000; box-shadow: 0 2px 12px rgba(0,31,63,0.3); }
+  .navbar-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: white; }
+  .navbar-brand img { width: 36px; height: 36px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.3); }
+  .navbar-brand span { font-size: 17px; font-weight: 700; }
+  .ep-links { display: flex; gap: 4px; }
+  .ep-links a { color: rgba(255,255,255,0.8); text-decoration: none; padding: 7px 14px; border-radius: 3px; font-size: 13px; font-weight: 600; transition: all 0.2s; }
+  .ep-links a:hover, .ep-links a.active { background: rgba(255,255,255,0.15); color: white; }
+
+  .hero { margin-top: 60px; background: linear-gradient(135deg, var(--navy-primary) 0%, var(--navy-light) 60%, var(--navy-accent) 100%); padding: 60px 30px; text-align: center; color: white; }
+  .ep-badge { display: inline-block; padding: 6px 20px; border-radius: 50px; font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); margin-bottom: 16px; }
+  .hero h1 { font-size: 36px; font-weight: 800; margin-bottom: 12px; }
+  .hero p { max-width: 580px; color: rgba(255,255,255,0.85); font-size: 16px; margin: 0 auto; }
+
+  .container { max-width: 860px; margin: 0 auto; padding: 40px 24px 60px; }
+
+  .step-header { display: flex; align-items: center; gap: 16px; margin: 48px 0 16px; padding-bottom: 14px; border-bottom: 2px solid #e0e0e0; }
+  .step-badge { background: var(--navy-primary); color: white; padding: 6px 14px; border-radius: 3px; font-size: 11px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; white-space: nowrap; }
+  .step-header h2 { font-size: 22px; font-weight: 700; color: var(--navy-primary); margin: 0; }
+
+  .step-note { font-size: 14px; color: #666; margin-bottom: 16px; }
+  .step-note strong { color: #333; }
+
+  .technique-label { display: inline-block; background: var(--navy-accent); color: white; padding: 4px 12px; border-radius: 3px; font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px; }
+
+  .prompt-card { background: white; border: 1px solid #e0e0e0; border-radius: 4px; overflow: hidden; margin: 16px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.06); transition: all 0.2s; }
+  .prompt-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.1); transform: translateY(-2px); }
+  .prompt-card-header { display: flex; align-items: center; gap: 8px; padding: 10px 16px; background: var(--navy-primary); color: white; font-size: 13px; font-weight: 600; }
+  .dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .dot.technique { background: var(--navy-accent); }
+  .dot.adv { background: var(--warning); }
+  .model-tag { margin-left: auto; padding: 3px 10px; border-radius: 3px; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; white-space: nowrap; }
+  .model-tag.chatgpt { background: rgba(16,163,127,0.2); color: #10a37f; }
+  .model-tag.gemini { background: rgba(66,133,244,0.2); color: #4285f4; }
+  .model-tag.claude { background: rgba(217,119,6,0.2); color: #d97706; }
+  .model-tag.deepseek { background: rgba(91,110,245,0.2); color: #5b6ef5; }
+  .prompt-card pre { padding: 16px 18px; font-family: 'Courier New', monospace; font-size: 12.5px; line-height: 1.7; color: #333; white-space: pre-wrap; word-wrap: break-word; background: #f8f9fa; overflow-x: auto; }
+
+  .info-box { background: rgba(0,116,217,0.06); border-left: 4px solid var(--navy-accent); padding: 14px 18px; border-radius: 0 4px 4px 0; margin: 16px 0; font-size: 14px; color: #444; }
+  .info-box strong { color: var(--navy-primary); }
+
+  .warn-box { background: rgba(234,67,53,0.06); border-left: 4px solid var(--danger); padding: 14px 18px; border-radius: 0 4px 4px 0; margin: 16px 0; font-size: 14px; color: #444; }
+
+  .workflow { margin: 16px 0; }
+  .workflow-step { display: flex; gap: 14px; margin: 12px 0; align-items: flex-start; }
+  .wstep-num { min-width: 36px; height: 36px; border-radius: 50%; background: var(--navy-primary); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 13px; color: #fff; flex-shrink: 0; }
+  .wstep-body h4 { font-size: 14px; font-weight: 700; color: var(--navy-primary); margin-bottom: 3px; }
+  .wstep-body p { font-size: 13px; color: #666; margin: 0; }
+
+  .cheat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 12px; margin: 16px 0; }
+  .cheat-item { background: white; border: 1px solid #e0e0e0; border-radius: 4px; padding: 16px; box-shadow: 0 2px 6px rgba(0,0,0,0.05); transition: all 0.2s; }
+  .cheat-item:hover { transform: translateY(-2px); box-shadow: 0 4px 14px rgba(0,0,0,0.1); }
+  .cheat-item h4 { font-size: 14px; font-weight: 700; margin-bottom: 10px; color: var(--navy-primary); }
+  .cheat-item code { font-family: 'Courier New', monospace; font-size: 11.5px; display: block; background: #f0f4f8; padding: 12px; border-radius: 3px; color: #333; line-height: 1.6; white-space: pre-wrap; border: 1px solid #e0e0e0; }
+
+  .completion-banner { background: white; border: 2px solid var(--navy-accent); border-radius: 4px; padding: 36px; text-align: center; margin: 40px 0; box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
+  .completion-banner h2 { color: var(--navy-primary); font-size: 26px; margin-bottom: 10px; }
+  .completion-banner p { color: #666; font-size: 14px; margin-bottom: 24px; }
+  .stats { display: flex; justify-content: center; gap: 28px; flex-wrap: wrap; }
+  .stat .num { font-size: 32px; font-weight: 900; color: var(--navy-accent); }
+  .stat .label { font-size: 11px; color: #666; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
+
+  .footer-nav { display: flex; justify-content: space-between; margin-top: 48px; padding-top: 24px; border-top: 2px solid #e0e0e0; }
+  .footer-nav a { display: inline-flex; align-items: center; gap: 8px; padding: 10px 22px; border-radius: 3px; text-decoration: none; font-weight: 600; font-size: 14px; background: var(--navy-primary); color: white; transition: all 0.2s; }
+  .footer-nav a:hover { background: var(--navy-hover); transform: translateY(-2px); }
+  .footer-nav a.prev { background: #6c757d; }
+
+  /* REVEAL OVERLAY */
+  .prompt-wrap { position: relative; }
+  .prompt-wrap pre { filter: blur(5px); user-select: none; transition: filter 0.35s; pointer-events: none; }
+  .prompt-wrap.revealed pre { filter: none; user-select: text; pointer-events: auto; }
+  .reveal-overlay { position: absolute; inset: 0; z-index: 2; background: rgba(0,20,45,0.8); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: opacity 0.35s; }
+  .reveal-overlay .rov-inner { display: flex; align-items: center; gap: 10px; color: rgba(255,255,255,0.85); font-size: 13px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; }
+  .reveal-overlay .rov-inner i { font-size: 18px; }
+  .prompt-wrap.revealed .reveal-overlay { opacity: 0; pointer-events: none; }
+  .eye-btn { background: none; border: none; cursor: pointer; color: rgba(255,255,255,0.6); font-size: 15px; padding: 0 4px; margin-left: 6px; transition: color 0.2s; line-height: 1; }
+  .eye-btn:hover { color: #fff; }
+
+  .progress-bar { position: fixed; top: 60px; left: 0; height: 3px; background: var(--navy-accent); z-index: 999; transition: width 0.1s; }
+
+  footer { text-align: center; padding: 20px; background: var(--navy-primary); color: rgba(255,255,255,0.7); font-size: 13px; }
+  footer a { color: var(--navy-accent); text-decoration: none; }
+
+  @media (max-width: 768px) {
+    .navbar { padding: 0 14px; }
+    .navbar-brand span { display: none; }
+    .hero { padding: 40px 16px; }
+    .hero h1 { font-size: 24px; }
+    .container { padding: 24px 14px 48px; }
+    .cheat-grid { grid-template-columns: 1fr; }
+    .step-header h2 { font-size: 18px; }
+    .footer-nav { flex-direction: column; gap: 10px; }
+    .footer-nav a { justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<div class="progress-bar" id="progress"></div>
+
+<nav class="navbar">
+  <a href="#" class="navbar-brand">
+    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiGXxCe0WNNedmFqSWeF761f7Kshhc-NP5ChRQKz9fr97cO8VaarvD0KlCwqHojJVBWv-RAxfOqMI5rD4H78KnARyOc6QgwL1nRRFWf5xNQ1d9F9HfAoLPPGlTyP0GwNl4n-INMEsWLQ4Y7zJtz5bOdAnc2ePH9-uCRgshlo6BsS6gJEz6fhrxL-5U5O3sX/s160/channels4_profile.jpg" alt="Rameez Scripts">
+    <span>Rameez Scripts</span>
+  </a>
+  <div class="ep-links">
+    <a href="ep1.html">EP 1</a>
+    <a href="ep2.html" class="active">EP 2</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="ep-badge">Episode 2 of 2 — Final</div>
+  <h1>Advanced AI Techniques to Get<br>10X Better Apps Script Code</h1>
+  <p>5 pro techniques — Few-Shot, Role Prompting, Chain-of-Thought, System Prompts, and Iterative Building. Each one makes your prompts significantly more powerful.</p>
+</header>
+
+<main class="container">
+
+  <!-- STEP 01 — FEW SHOT -->
+  <div class="step-header">
+    <div class="step-badge">Step 01</div>
+    <h2>Technique: Few-Shot Prompting</h2>
+  </div>
+  <div class="technique-label">Show Pattern → AI Copies It</div>
+  <p class="step-note">Instead of explaining what you want, <strong>show AI 2 examples</strong>. It reads the pattern and applies it to new items. Perfect for generating repetitive CRUD functions.</p>
+
+  <div class="prompt-card">
+    <div class="prompt-card-header">
+      <span class="dot technique"></span> Few-Shot: CRUD Generator
+      <span class="model-tag gemini">Gemini</span>
+    </div>
+    <pre>Generate Apps Script CRUD functions following this exact pattern:
+
+Example 1 — Sheet: "Employees"
+function getEmployees() {
+  const sh = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('Employees');
+  const data = sh.getDataRange().getValues();
+  const headers = data.shift();
+  return data.filter(r => r[0] !== '').map(r => Object.fromEntries(headers.map((h,i) => [h,r[i]])));
+}
+function addEmployee(obj) {
+  const sh = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('Employees');
+  const headers = sh.getRange(1,1,1,sh.getLastColumn()).getValues()[0];
+  sh.appendRow(headers.map(h => obj[h] || ''));
+  return {success: true, msg: 'Employee added'};
+}
+
+Example 2 — Sheet: "Products"
+function getProducts() {
+  const sh = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('Products');
+  const data = sh.getDataRange().getValues();
+  const headers = data.shift();
+  return data.filter(r => r[0] !== '').map(r => Object.fromEntries(headers.map((h,i) => [h,r[i]])));
+}
+function addProduct(obj) {
+  const sh = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('Products');
+  const headers = sh.getRange(1,1,1,sh.getLastColumn()).getValues()[0];
+  sh.appendRow(headers.map(h => obj[h] || ''));
+  return {success: true, msg: 'Product added'};
+}
+
+Now generate the same for: "Departments", "Attendance", "Invoices"</pre>
+  </div>
+
+  <div class="prompt-card">
+    <div class="prompt-card-header">
+      <span class="dot technique"></span> Few-Shot: Sheets Formula Pattern
+      <span class="model-tag chatgpt">ChatGPT</span>
+    </div>
+    <pre>Generate Sheets VLOOKUP formulas following this pattern:
+
+Example:
+  Need: employee name from ID → =IFERROR(VLOOKUP(A2, Employees!A:B, 2, FALSE), "Not Found")
+  Need: product price from code → =IFERROR(VLOOKUP(B2, Products!A:C, 3, FALSE), "Not Found")
+
+Now generate for:
+  Need: dept name from dept ID (Departments: A=ID, B=Name)
+  Need: student grade from roll number (Results: A=Roll, D=Grade)
+  Need: supplier phone from name (Suppliers: A=Name, C=Phone)</pre>
+  </div>
+
+  <div class="info-box">
+    <strong>Why it works:</strong> AI doesn't just copy — it understands your naming convention, code style, and return format, then applies all of it to new items.
+  </div>
+
+  <!-- STEP 02 — ROLE PROMPTING -->
+  <div class="step-header">
+    <div class="step-badge">Step 02</div>
+    <h2>Technique: Role Prompting</h2>
+  </div>
+  <div class="technique-label">Act Like a Senior Developer</div>
+  <p class="step-note">Tell AI "You are a senior Apps Script developer with 10 years experience." AI immediately writes more professional, optimized code — like asking a specialist instead of a junior.</p>
+
+  <div class="prompt-card">
+    <div class="prompt-card-header">
+      <span class="dot technique"></span> Role: Fix Slow Apps Script Code
+      <span class="model-tag gemini">Gemini</span>
+    </div>
+    <pre>You are a senior Google Apps Script developer with 10 years
+of experience. You care deeply about performance.
+
+This code processes 5000+ rows and is very slow:
+
+```javascript
+function processOrders() {
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Orders");
+  var lastRow = sheet.getLastRow();
+  for (var i = 2; i &lt;= lastRow; i++) {
+    var status = sheet.getRange(i, 5).getValue();
+    if (status === "Pending") {
+      sheet.getRange(i, 6).setValue("Processing");
+      var email = sheet.getRange(i, 3).getValue();
+      var name = sheet.getRange(i, 2).getValue();
+      GmailApp.sendEmail(email, "Order Update", "Dear " + name + ", your order is processing.");
+      sheet.getRange(i, 5).setValue("Processed");
+    }
+  }
+}
+```
+
+As a senior developer:
+1. Why is this slow? (simple explanation)
+2. Rewrite using getValues()/setValues() batch operations
+3. Any other improvements you recommend?</pre>
+  </div>
+
+  <div class="prompt-card">
+    <div class="prompt-card-header">
+      <span class="dot technique"></span> Role: Sheets Formula Expert
+      <span class="model-tag deepseek">DeepSeek</span>
+    </div>
+    <pre>You are a Google Sheets formula expert specializing in QUERY and ARRAYFORMULA.
+
+Sheet "Sales": A=Date, B=Salesperson, C=Region, D=Product, E=Amount, F=Status
+
+I need ONE formula in H2 that:
+- Filters Status = "Completed" only
+- Groups by Salesperson
+- Sums total Amount per person
+- Sorts highest to lowest
+- Shows top 10 only
+
+Give me the formula + simple explanation of each part.</pre>
+  </div>
+
+  <!-- STEP 03 — CHAIN OF THOUGHT -->
+  <div class="step-header">
+    <div class="step-badge">Step 03</div>
+    <h2>Technique: Chain-of-Thought</h2>
+  </div>
+  <div class="technique-label">Make AI Think Step by Step</div>
+  <p class="step-note">For complex problems, tell AI to <strong>think through it step by step before writing code</strong>. This forces careful reasoning instead of jumping to a wrong answer. Especially useful for debugging.</p>
+
+  <div class="prompt-card">
+    <div class="prompt-card-header">
+      <span class="dot technique"></span> CoT: Debug a Daily Trigger
+      <span class="model-tag claude">Claude</span>
+    </div>
+    <pre>&lt;context&gt;
+Apps Script time-based trigger runs every day at 8 AM.
+It stopped working 3 days ago. No errors in execution log.
+&lt;/context&gt;
+
+&lt;code&gt;
+function sendAttendanceReminder() {
+  var ss = SpreadsheetApp.openById('abc123xyz');
+  var sheet = ss.getSheetByName('Employees');
+  var data = sheet.getDataRange().getValues();
+  for (var i = 1; i &lt; data.length; i++) {
+    if (data[i][4] === 'Active') {
+      GmailApp.sendEmail(data[i][2], 'Attendance Reminder',
+        'Please mark attendance: ' + new Date());
+    }
+  }
+}
+&lt;/code&gt;
+
+&lt;task&gt;
+Think step by step:
+Step 1: Trigger issues — deleted? expired? hit quota?
+Step 2: Auth issues — scopes changed? re-auth needed?
+Step 3: Gmail quota — daily sending limit reached?
+Step 4: Sheet issues — renamed? permission changed?
+Step 5: Code logic — any edge case that fails silently?
+
+For each step: most likely cause → how to verify → how to fix.
+&lt;/task&gt;</pre>
+  </div>
+
+  <div class="prompt-card">
+    <div class="prompt-card-header">
+      <span class="dot technique"></span> CoT: Design a Formula
+      <span class="model-tag deepseek">DeepSeek</span>
+    </div>
+    <pre>I need an attendance percentage formula. Think through the logic first:
+
+Sheet "Attendance": A=Date, B=EmployeeID, C=Status
+Status values: "Present", "Absent", "Leave", "Half Day"
+Rules: Half Day = 0.5, Leave does NOT count in total days
+Formula for E2, employee ID is in D2.
+
+Think step by step:
+1. How to count total rows for this employee?
+2. How to exclude "Leave" from total?
+3. How to count "Present" days?
+4. How to handle "Half Day" as 0.5?
+5. What is the percentage formula?
+6. How to handle divide-by-zero?
+
+Then: give the final formula for E2 + simple explanation.</pre>
+  </div>
+
+  <div class="warn-box">
+    <strong>Don't just say "think step by step"</strong> — give the actual steps you want AI to think about. Vague instructions = vague thinking.
+  </div>
+
+  <!-- STEP 04 — SYSTEM PROMPTS -->
+  <div class="step-header">
+    <div class="step-badge">Step 04</div>
+    <h2>Technique: System Prompts</h2>
+  </div>
+  <div class="technique-label">Set Rules Once → Apply to Every Message</div>
+  <p class="step-note">Set your stack, coding rules, and return format <strong>once</strong> — AI follows them for the entire conversation. No more repeating yourself every message.</p>
+  <p class="step-note">In <strong>ChatGPT</strong>: Custom Instructions. In <strong>Gemini</strong>: System Instructions. In <strong>Claude</strong>: paste at top of first message.</p>
+
+  <div class="prompt-card">
+    <div class="prompt-card-header">
+      <span class="dot adv"></span> System Prompt: Apps Script Assistant
+      <span class="model-tag chatgpt">ChatGPT</span>
+    </div>
+    <pre>You are my Google Apps Script coding assistant.
+
+Stack:
+- Google Apps Script (V8 runtime)
+- Google Sheets as database
+- HTML Service for frontend
+- No external libraries
+
+Rules for ALL responses:
+1. Always const/let — never var
+2. Batch reads: getValues() once → process in memory → setValues() once
+3. Never read/write cells inside loops
+4. Use map/filter/reduce over for loops
+5. Return format: {success: true/false, data: ..., msg: "..."}
+6. Short developer-style comments only — no tutorial comments
+7. Use GmailApp for emails, not MailApp
+8. Wrap DB operations in try/catch
+9. When I give column map, use those exact indexes
+
+Output: code only unless I ask for explanation. ```javascript blocks.</pre>
+  </div>
+
+  <div class="prompt-card">
+    <div class="prompt-card-header">
+      <span class="dot adv"></span> System Prompt: Sheets + Script Expert
+      <span class="model-tag gemini">Gemini</span>
+    </div>
+    <pre>You are my Google Sheets and Apps Script expert.
+
+My context:
+- Dashboards and automation using Sheets as DB
+- Frontend: HTML Service + React 18 (CDN)
+- Deploy as web apps via doGet()
+- Non-technical business users
+
+Coding standards:
+- V8 runtime — modern JS only
+- Batch operations always (getValues/setValues)
+- SWR caching with CacheService where needed
+- All functions return: {success, data, msg}
+- Short comments like a developer's personal notes
+
+For formulas:
+- ARRAYFORMULA for auto-fill
+- IFERROR for missing data
+- QUERY over nested IFs for filtering
+
+Output: code/formula only. No filler text. No markdown prose.</pre>
+  </div>
+
+  <!-- STEP 05 — ITERATIVE BUILDING -->
+  <div class="step-header">
+    <div class="step-badge">Step 05</div>
+    <h2>Technique: Iterative Refinement</h2>
+  </div>
+  <div class="technique-label">Build Layer by Layer — Not All at Once</div>
+  <p class="step-note">Don't ask for a complete feature in one shot. Build it in layers — each prompt adds one piece. You stay in control and understand every line.</p>
+
+  <div class="workflow">
+    <div class="workflow-step">
+      <div class="wstep-num">1</div>
+      <div class="wstep-body">
+        <h4>Core Function</h4>
+        <p>"Write a function that reads today's rows from the Sales sheet and returns them as an array."</p>
+      </div>
+    </div>
+    <div class="workflow-step">
+      <div class="wstep-num">2</div>
+      <div class="wstep-body">
+        <h4>Add Email Logic</h4>
+        <p>"Now write a function that takes that array and sends a summary email to manager@company.com — list each sale with name and amount, total at the bottom."</p>
+      </div>
+    </div>
+    <div class="workflow-step">
+      <div class="wstep-num">3</div>
+      <div class="wstep-body">
+        <h4>Add Error Handling</h4>
+        <p>"Update: if array is empty, send a 'No sales today' email. Wrap in try/catch. Log errors to a 'Logs' sheet."</p>
+      </div>
+    </div>
+    <div class="workflow-step">
+      <div class="wstep-num">4</div>
+      <div class="wstep-body">
+        <h4>Add Trigger</h4>
+        <p>"Write a function that creates a daily trigger to run this at 6 PM. Delete old trigger first to avoid duplicates."</p>
+      </div>
+    </div>
+    <div class="workflow-step">
+      <div class="wstep-num">5</div>
+      <div class="wstep-body">
+        <h4>Final Review</h4>
+        <p>"Review all the code as a senior Apps Script developer. Check for quota issues, performance problems, anything that could fail. Fix what you find."</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 06 — CHEAT SHEET -->
+  <div class="step-header">
+    <div class="step-badge">Step 06</div>
+    <h2>Apps Script Prompt Cheat Sheet</h2>
+  </div>
+  <p class="step-note">Copy these templates, fill in your details, and use them every time.</p>
+
+  <div class="cheat-grid">
+    <div class="cheat-item">
+      <h4>New Function</h4>
+      <code>Write a Google Apps Script function called [name].
+
+Sheet: "[SheetName]"
+Columns: A=x, B=y, C=z
+
+Logic:
+1. [step 1]
+2. [step 2]
+
+Return: [format]
+Code only. Short comments.</code>
+    </div>
+    <div class="cheat-item">
+      <h4>Bug Fix</h4>
+      <code>My function should [expected]
+but it's [actual behavior].
+
+[paste code]
+
+Cols: A=x, B=y, C=z
+Expected: [correct result]
+Actual: [wrong result]
+
+Find bug. 1 line explanation.
+Show fixed code only.</code>
+    </div>
+    <div class="cheat-item">
+      <h4>Performance Fix</h4>
+      <code>You are a senior Apps Script dev.
+This code is slow — [X] rows,
+takes [Y] seconds.
+
+[paste code]
+
+Rewrite using:
+- getValues() batch read
+- setValues() batch write
+- No reads/writes in loops</code>
+    </div>
+    <div class="cheat-item">
+      <h4>Sheets Formula</h4>
+      <code>Write a Sheets formula for [cell].
+
+Sheet "[name]" columns:
+A=x, B=y, C=z
+
+Need:
+- [what to calculate]
+- [any filters or conditions]
+- ARRAYFORMULA for auto-fill
+
+Formula only. No explanation.</code>
+    </div>
+    <div class="cheat-item">
+      <h4>Add a Feature</h4>
+      <code>Update this function to also
+[new feature].
+
+[paste code]
+
+New requirement:
+- [what to add]
+- [condition]
+- Don't break existing logic
+
+Same code style. Code only.</code>
+    </div>
+    <div class="cheat-item">
+      <h4>Explain Code</h4>
+      <code>Explain this Apps Script code
+in simple words.
+
+[paste code]
+
+Tell me:
+1. What does it do overall?
+2. What does each part do?
+3. Any risks or edge cases?
+
+Simple language. No jargon.</code>
+    </div>
+  </div>
+
+  <!-- COMPLETION -->
+  <div class="completion-banner">
+    <h2>You're Ready to Code 10X Faster</h2>
+    <p>EP1 + EP2 complete. Start using these in your next project — the difference will be immediate.</p>
+    <div class="stats">
+      <div class="stat"><div class="num">10</div><div class="label">Steps Covered</div></div>
+      <div class="stat"><div class="num">5</div><div class="label">Pro Techniques</div></div>
+      <div class="stat"><div class="num">4</div><div class="label">AI Models</div></div>
+      <div class="stat"><div class="num">6</div><div class="label">Templates</div></div>
+    </div>
+  </div>
+
+  <div class="footer-nav">
+    <a href="ep1.html" class="prev"><i class="fas fa-arrow-left"></i> EP 1: Basics</a>
+    <a href="https://www.youtube.com/@rameezimdad" target="_blank">Subscribe <i class="fas fa-play"></i></a>
+  </div>
+
+</main>
+
+<footer>
+  <p>Developed by <a href="https://www.youtube.com/@rameezimdad" target="_blank">Rameez Scripts</a> — Write 10X Better Google Sheets &amp; Apps Script Code with AI</p>
+</footer>
+
+<script>
+  // scroll progress
+  window.addEventListener('scroll', () => {
+    const h = document.documentElement;
+    document.getElementById('progress').style.width =
+      (h.scrollTop / (h.scrollHeight - h.clientHeight) * 100) + '%';
+  });
+
+  // reveal overlays
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.prompt-card').forEach(card => {
+      const header = card.querySelector('.prompt-card-header');
+      const pre    = card.querySelector('pre');
+      if (!pre || !header) return;
+      if (header.querySelector('.dot.bad')) return; // bad prompts always visible
+
+      const wrap = document.createElement('div');
+      wrap.className = 'prompt-wrap';
+      pre.parentNode.insertBefore(wrap, pre);
+      wrap.appendChild(pre);
+
+      const ov = document.createElement('div');
+      ov.className = 'reveal-overlay';
+      ov.innerHTML = '<div class="rov-inner"><i class="fas fa-eye-slash"></i><span>Click to reveal prompt</span></div>';
+      wrap.appendChild(ov);
+
+      const btn = document.createElement('button');
+      btn.className = 'eye-btn';
+      btn.title = 'Show / Hide';
+      btn.innerHTML = '<i class="fas fa-eye-slash"></i>';
+      header.appendChild(btn);
+
+      function toggle() {
+        wrap.classList.toggle('revealed');
+        const on = wrap.classList.contains('revealed');
+        btn.innerHTML  = on ? '<i class="fas fa-eye"></i>' : '<i class="fas fa-eye-slash"></i>';
+      }
+      btn.addEventListener('click', e => { e.stopPropagation(); toggle(); });
+      ov.addEventListener('click', toggle);
+    });
+  });
+</script>
+</body>
+</html>

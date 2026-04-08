@@ -1,0 +1,522 @@
+<!--
+  Developed by Rameez Scripts
+  WhatsApp: https://wa.me/923224083545 (For Custom Projects)
+  YouTube: https://www.youtube.com/@rameezimdad (Subscribe for more!)
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>EP 1 — Write 10X Better Apps Script Code with AI Prompts</title>
+<link rel="icon" type="image/jpeg" href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiGXxCe0WNNedmFqSWeF761f7Kshhc-NP5ChRQKz9fr97cO8VaarvD0KlCwqHojJVBWv-RAxfOqMI5rD4H78KnARyOc6QgwL1nRRFWf5xNQ1d9F9HfAoLPPGlTyP0GwNl4n-INMEsWLQ4Y7zJtz5bOdAnc2ePH9-uCRgshlo6BsS6gJEz6fhrxL-5U5O3sX/s32/channels4_profile.jpg">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+  :root {
+    --navy-primary: #001f3f;
+    --navy-light: #003366;
+    --navy-accent: #0074D9;
+    --navy-hover: #002a52;
+    --success: #34a853;
+    --warning: #fbbc04;
+    --danger: #ea4335;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f7fa; color: #333; line-height: 1.6; }
+
+  /* NAV */
+  .navbar { position: fixed; top: 0; left: 0; right: 0; background: var(--navy-primary); padding: 0 30px; height: 60px; display: flex; align-items: center; justify-content: space-between; z-index: 1000; box-shadow: 0 2px 12px rgba(0,31,63,0.3); }
+  .navbar-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: white; }
+  .navbar-brand img { width: 36px; height: 36px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.3); }
+  .navbar-brand span { font-size: 17px; font-weight: 700; }
+  .ep-links { display: flex; gap: 4px; }
+  .ep-links a { color: rgba(255,255,255,0.8); text-decoration: none; padding: 7px 14px; border-radius: 3px; font-size: 13px; font-weight: 600; transition: all 0.2s; }
+  .ep-links a:hover, .ep-links a.active { background: rgba(255,255,255,0.15); color: white; }
+
+  /* HERO */
+  .hero { margin-top: 60px; background: linear-gradient(135deg, var(--navy-primary) 0%, var(--navy-light) 60%, var(--navy-accent) 100%); padding: 60px 30px; text-align: center; color: white; }
+  .ep-badge { display: inline-block; padding: 6px 20px; border-radius: 50px; font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); margin-bottom: 16px; }
+  .hero h1 { font-size: 36px; font-weight: 800; margin-bottom: 12px; }
+  .hero p { max-width: 580px; color: rgba(255,255,255,0.85); font-size: 16px; margin: 0 auto; }
+
+  /* LAYOUT */
+  .container { max-width: 860px; margin: 0 auto; padding: 40px 24px 60px; }
+
+  /* STEP HEADER */
+  .step-header { display: flex; align-items: center; gap: 16px; margin: 48px 0 16px; padding-bottom: 14px; border-bottom: 2px solid #e0e0e0; }
+  .step-header:first-child { margin-top: 0; }
+  .step-badge { background: var(--navy-primary); color: white; padding: 6px 14px; border-radius: 3px; font-size: 11px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; white-space: nowrap; }
+  .step-header h2 { font-size: 22px; font-weight: 700; color: var(--navy-primary); margin: 0; }
+
+  .step-note { font-size: 14px; color: #666; margin-bottom: 16px; }
+  .step-note strong { color: #333; }
+
+  /* PROMPT CARDS */
+  .prompt-card { background: white; border: 1px solid #e0e0e0; border-radius: 4px; overflow: hidden; margin: 16px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.06); transition: all 0.2s; }
+  .prompt-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.1); transform: translateY(-2px); }
+  .prompt-card-header { display: flex; align-items: center; gap: 8px; padding: 10px 16px; background: var(--navy-primary); color: white; font-size: 13px; font-weight: 600; }
+  .dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .dot.bad { background: var(--danger); }
+  .dot.good { background: var(--success); }
+  .model-tag { margin-left: auto; padding: 3px 10px; border-radius: 3px; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; white-space: nowrap; }
+  .model-tag.chatgpt { background: rgba(16,163,127,0.2); color: #10a37f; }
+  .model-tag.gemini { background: rgba(66,133,244,0.2); color: #4285f4; }
+  .model-tag.claude { background: rgba(217,119,6,0.2); color: #d97706; }
+  .model-tag.deepseek { background: rgba(91,110,245,0.2); color: #5b6ef5; }
+  .prompt-card pre { padding: 16px 18px; font-family: 'Courier New', monospace; font-size: 12.5px; line-height: 1.7; color: #333; white-space: pre-wrap; word-wrap: break-word; background: #f8f9fa; overflow-x: auto; }
+
+  /* COMPARE GRID */
+  .compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 16px 0; }
+
+  /* PILLARS */
+  .pillars-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin: 16px 0; }
+  .pillar { background: white; border: 1px solid #e0e0e0; border-left: 4px solid var(--navy-accent); border-radius: 4px; padding: 16px; box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
+  .pillar .pnum { font-size: 24px; font-weight: 900; color: var(--navy-accent); line-height: 1; }
+  .pillar h4 { font-size: 14px; font-weight: 700; margin: 6px 0 4px; color: var(--navy-primary); }
+  .pillar p { font-size: 13px; color: #666; margin: 0; }
+
+  /* RULES */
+  .rules-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin: 16px 0; }
+  .rule { background: white; border: 1px solid #e0e0e0; border-left: 4px solid var(--navy-primary); border-radius: 4px; padding: 16px; box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
+  .rule .rnum { font-size: 20px; font-weight: 900; color: var(--navy-primary); }
+  .rule h4 { font-size: 14px; font-weight: 700; margin: 6px 0 4px; color: var(--navy-primary); }
+  .rule p { font-size: 13px; color: #666; margin: 0; }
+
+  /* INFO BOX */
+  .info-box { background: rgba(0,116,217,0.06); border-left: 4px solid var(--navy-accent); padding: 14px 18px; border-radius: 0 4px 4px 0; margin: 16px 0; font-size: 14px; color: #444; }
+  .info-box strong { color: var(--navy-primary); }
+
+  /* AI STYLE TAG */
+  .ai-style { display: inline-block; margin-bottom: 10px; padding: 4px 12px; border-radius: 3px; font-size: 12px; font-weight: 700; background: var(--navy-primary); color: white; }
+
+  /* FOOTER NAV */
+  .footer-nav { display: flex; justify-content: flex-end; margin-top: 48px; padding-top: 24px; border-top: 2px solid #e0e0e0; }
+  .footer-nav a { display: inline-flex; align-items: center; gap: 8px; padding: 10px 24px; border-radius: 3px; text-decoration: none; font-weight: 600; font-size: 14px; background: var(--navy-primary); color: white; transition: all 0.2s; }
+  .footer-nav a:hover { background: var(--navy-hover); transform: translateY(-2px); }
+
+  /* PROGRESS */
+  /* REVEAL OVERLAY */
+  .prompt-wrap { position: relative; }
+  .prompt-wrap pre { filter: blur(5px); user-select: none; transition: filter 0.35s; pointer-events: none; }
+  .prompt-wrap.revealed pre { filter: none; user-select: text; pointer-events: auto; }
+  .reveal-overlay { position: absolute; inset: 0; z-index: 2; background: rgba(0,20,45,0.8); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: opacity 0.35s; }
+  .reveal-overlay .rov-inner { display: flex; align-items: center; gap: 10px; color: rgba(255,255,255,0.85); font-size: 13px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; }
+  .reveal-overlay .rov-inner i { font-size: 18px; }
+  .prompt-wrap.revealed .reveal-overlay { opacity: 0; pointer-events: none; }
+  .eye-btn { background: none; border: none; cursor: pointer; color: rgba(255,255,255,0.6); font-size: 15px; padding: 0 4px; margin-left: 6px; transition: color 0.2s; line-height: 1; }
+  .eye-btn:hover { color: #fff; }
+
+  .progress-bar { position: fixed; top: 60px; left: 0; height: 3px; background: var(--navy-accent); z-index: 999; transition: width 0.1s; }
+
+  footer { text-align: center; padding: 20px; background: var(--navy-primary); color: rgba(255,255,255,0.7); font-size: 13px; }
+  footer a { color: var(--navy-accent); text-decoration: none; }
+
+  @media (max-width: 768px) {
+    .navbar { padding: 0 14px; }
+    .navbar-brand span { display: none; }
+    .hero { padding: 40px 16px; }
+    .hero h1 { font-size: 24px; }
+    .container { padding: 24px 14px 48px; }
+    .compare-grid, .pillars-grid, .rules-grid { grid-template-columns: 1fr; }
+    .step-header { gap: 10px; }
+    .step-header h2 { font-size: 18px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="progress-bar" id="progress"></div>
+
+<nav class="navbar">
+  <a href="#" class="navbar-brand">
+    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiGXxCe0WNNedmFqSWeF761f7Kshhc-NP5ChRQKz9fr97cO8VaarvD0KlCwqHojJVBWv-RAxfOqMI5rD4H78KnARyOc6QgwL1nRRFWf5xNQ1d9F9HfAoLPPGlTyP0GwNl4n-INMEsWLQ4Y7zJtz5bOdAnc2ePH9-uCRgshlo6BsS6gJEz6fhrxL-5U5O3sX/s160/channels4_profile.jpg" alt="Rameez Scripts">
+    <span>Rameez Scripts</span>
+  </a>
+  <div class="ep-links">
+    <a href="ep1.html" class="active">EP 1</a>
+    <a href="ep2.html">EP 2</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="ep-badge">Episode 1 of 2</div>
+  <h1>Write 10X Better Code Using AI<br>for Google Sheets &amp; Apps Script</h1>
+  <p>Stop getting wrong code from AI. Learn how to write proper prompts and get perfect working code every single time.</p>
+</header>
+
+<main class="container">
+
+  <!-- STEP 01 -->
+  <div class="step-header">
+    <div class="step-badge">Step 01</div>
+    <h2>Why Your Prompt is Everything</h2>
+  </div>
+  <p class="step-note">AI gives <strong>bad code</strong> when you give it <strong>bad prompts</strong>. The output quality is 100% based on how you ask. More details = better code. Less details = garbage code.</p>
+  <div class="info-box">
+    Think of AI like a new employee — it knows nothing about your sheet. <strong>Your job is to tell it everything</strong>: sheet name, columns, what to do, what not to do.
+  </div>
+
+  <!-- STEP 02 -->
+  <div class="step-header">
+    <div class="step-badge">Step 02</div>
+    <h2>Bad Prompt vs Good Prompt</h2>
+  </div>
+  <p class="step-note">This is the most important thing to understand. See the difference between a lazy prompt and a proper one.</p>
+
+  <div class="compare-grid">
+    <div class="prompt-card">
+      <div class="prompt-card-header">
+        <span class="dot bad"></span> Bad Prompt
+        <span class="model-tag chatgpt">ChatGPT</span>
+      </div>
+      <pre>Make a Google Sheet script that sends emails</pre>
+    </div>
+    <div class="prompt-card">
+      <div class="prompt-card-header">
+        <span class="dot good"></span> Good Prompt
+        <span class="model-tag chatgpt">ChatGPT</span>
+      </div>
+      <pre>Write a Google Apps Script function that reads
+from a sheet named "Employees" and sends emails.
+
+Sheet columns:
+- A: Employee Name
+- B: Email Address
+- C: Department
+- D: Status ("Active" or "Inactive")
+
+Rules:
+- Only send to Status = "Active" employees
+- Subject: "Monthly Update - [Department]"
+- Body: include employee name
+- Skip empty rows
+- After sending, write "Sent" in column E with today's date
+- Use GmailApp.sendEmail()
+
+Return only the function. Short comments only.</pre>
+    </div>
+  </div>
+
+  <!-- STEP 03 -->
+  <div class="step-header">
+    <div class="step-badge">Step 03</div>
+    <h2>The 5 Pillars of a Perfect Prompt</h2>
+  </div>
+  <p class="step-note">Every good code prompt must have these 5 things. Missing even one = weak output.</p>
+
+  <div class="pillars-grid">
+    <div class="pillar">
+      <div class="pnum">01</div>
+      <h4>Context</h4>
+      <p>Sheet name, column layout, what the project is about.</p>
+    </div>
+    <div class="pillar">
+      <div class="pnum">02</div>
+      <h4>Task</h4>
+      <p>Exactly what you want — "write a function that...", "fix this bug".</p>
+    </div>
+    <div class="pillar">
+      <div class="pnum">03</div>
+      <h4>Constraints</h4>
+      <p>What NOT to do — "no triggers", "manual run only", "1000+ rows".</p>
+    </div>
+    <div class="pillar">
+      <div class="pnum">04</div>
+      <h4>Output Format</h4>
+      <p>"Code only", "add short comments", "return as JSON".</p>
+    </div>
+    <div class="pillar">
+      <div class="pnum">05</div>
+      <h4>One Example</h4>
+      <p>Show one row of data: "Name=Ali, Status=Active → send email".</p>
+    </div>
+  </div>
+
+  <!-- STEP 04 -->
+  <div class="step-header">
+    <div class="step-badge">Step 04</div>
+    <h2>ChatGPT — Numbered Rules Work Best</h2>
+  </div>
+  <div class="ai-style">Style: Numbered list, clear rules, like a spec document</div>
+  <p class="step-note">Task: write a function to read active employees from a sheet.</p>
+
+  <div class="prompt-card">
+    <div class="prompt-card-header">
+      <span class="dot good"></span> ChatGPT Prompt
+      <span class="model-tag chatgpt">ChatGPT</span>
+    </div>
+    <pre>Write a Google Apps Script function called getActiveEmployees
+that reads from a sheet and returns active employees.
+
+Sheet name: "Employees"
+Columns: A=ID, B=Name, C=Email, D=Department, E=Status
+
+Rules:
+1. Skip header row (row 1)
+2. Read all data in ONE getValues() call — no cell-by-cell
+3. Filter: only rows where Status = "Active"
+4. Skip empty rows (where column B is empty)
+5. Return: array of objects [{id, name, email, department}]
+
+Code only. Short inline comments.</pre>
+  </div>
+
+  <!-- STEP 05 -->
+  <div class="step-header">
+    <div class="step-badge">Step 05</div>
+    <h2>Gemini — Context First, Task at the End</h2>
+  </div>
+  <div class="ai-style">Style: Full background first → question at the end</div>
+  <p class="step-note">Same task, different style. Gemini performs best when you describe everything upfront.</p>
+
+  <div class="prompt-card">
+    <div class="prompt-card-header">
+      <span class="dot good"></span> Gemini Prompt
+      <span class="model-tag gemini">Gemini</span>
+    </div>
+    <pre>Context:
+I have a Google Sheet called "Employees" with columns:
+A=ID, B=Name, C=Email, D=Department, E=Status (Active/Inactive).
+About 500 rows. I'm building a web app with Apps Script HTML Service.
+
+Task:
+Write a function called getActiveEmployees that:
+- Reads all data from the "Employees" sheet
+- Filters only Status = "Active" rows
+- Skips header row and empty rows
+- Returns array of objects: [{id, name, email, department}]
+
+Performance: read all data in one getValues() call.
+Code only. Short developer-style comments.</pre>
+  </div>
+
+  <!-- STEP 06 -->
+  <div class="step-header">
+    <div class="step-badge">Step 06</div>
+    <h2>Claude — XML Tags for Each Section</h2>
+  </div>
+  <div class="ai-style">Style: &lt;context&gt; &lt;task&gt; &lt;rules&gt; &lt;output&gt; tags</div>
+  <p class="step-note">Claude understands XML structure very well — it reads each tag as a separate instruction block.</p>
+
+  <div class="prompt-card">
+    <div class="prompt-card-header">
+      <span class="dot good"></span> Claude Prompt
+      <span class="model-tag claude">Claude</span>
+    </div>
+    <pre>&lt;context&gt;
+Google Apps Script. Sheet: "Employees"
+Columns: A=ID, B=Name, C=Email, D=Department, E=Status
+Values: "Active" or "Inactive". ~500 rows.
+&lt;/context&gt;
+
+&lt;task&gt;
+Write function getActiveEmployees — read sheet, return only active employees.
+&lt;/task&gt;
+
+&lt;rules&gt;
+- One getValues() batch call only
+- Skip header row (row 1)
+- Skip empty rows (column B empty)
+- Filter: column E = "Active"
+- Return: [{id, name, email, department}]
+&lt;/rules&gt;
+
+&lt;output&gt;
+Code only. Short inline comments. No explanation.
+&lt;/output&gt;</pre>
+  </div>
+
+  <!-- STEP 07 -->
+  <div class="step-header">
+    <div class="step-badge">Step 07</div>
+    <h2>DeepSeek — Explicit Steps with Column Indexes</h2>
+  </div>
+  <div class="ai-style">Style: Step-by-step with exact column indexes and data types</div>
+  <p class="step-note">DeepSeek loves precise, technical instructions. Give it exact indexes and it follows them perfectly.</p>
+
+  <div class="prompt-card">
+    <div class="prompt-card-header">
+      <span class="dot good"></span> DeepSeek Prompt
+      <span class="model-tag deepseek">DeepSeek</span>
+    </div>
+    <pre>Write Google Apps Script function: getActiveEmployees()
+
+Sheet: "Employees"
+Column map: A(0)=ID, B(1)=Name, C(2)=Email, D(3)=Dept, E(4)=Status
+
+Steps:
+1. getSheetByName("Employees")
+2. getDataRange().getValues() — single batch call
+3. data.shift() — remove header row
+4. filter: row[4] === "Active"
+5. filter: row[1] !== "" — skip empty rows
+6. map: {id:row[0], name:row[1], email:row[2], department:row[3]}
+7. return the array
+
+Code only. Short comments.</pre>
+  </div>
+
+  <div class="info-box">
+    <strong>Key Point:</strong> All 4 prompts ask for the same thing — just styled differently per AI. ChatGPT = numbered rules. Gemini = context first. Claude = XML tags. DeepSeek = exact indexes. Match the style and you get better results with less back-and-forth.
+  </div>
+
+  <!-- STEP 08 -->
+  <div class="step-header">
+    <div class="step-badge">Step 08</div>
+    <h2>How to Fix a Bug with AI</h2>
+  </div>
+  <p class="step-note">Always give AI 3 things: the code, what it <strong>should</strong> do, and what it's <strong>actually</strong> doing wrong.</p>
+
+  <div class="prompt-card">
+    <div class="prompt-card-header">
+      <span class="dot good"></span> Bug Fix Prompt
+      <span class="model-tag gemini">Gemini</span>
+    </div>
+    <pre>My Apps Script function should send emails only to "Active"
+employees, but it's sending to ALL employees.
+
+Code:
+```javascript
+function sendEmails() {
+  var sheet = SpreadsheetApp.getActiveSpreadsheet()
+    .getSheetByName("Employees");
+  var data = sheet.getDataRange().getValues();
+
+  for (var i = 1; i &lt; data.length; i++) {
+    var name = data[i][1];
+    var email = data[i][2];
+    var status = data[i][4];
+
+    if (status = "Active") {         // &lt;-- problem here
+      GmailApp.sendEmail(email, "Monthly Update",
+        "Hello " + name + ", here is your update.");
+    }
+  }
+}
+```
+
+Columns: A=ID, B=Name, C=Email, D=Dept, E=Status
+Expected: send only to Status = "Active"
+Actual: sending to everyone
+
+Find bug. One line explanation. Show fixed code.</pre>
+  </div>
+
+  <!-- STEP 09 -->
+  <div class="step-header">
+    <div class="step-badge">Step 09</div>
+    <h2>How to Get the Perfect Sheets Formula</h2>
+  </div>
+  <p class="step-note">Tell AI your column layout and exactly what calculation you need. The more specific, the better the formula.</p>
+
+  <div class="prompt-card">
+    <div class="prompt-card-header">
+      <span class="dot good"></span> Formula Prompt
+      <span class="model-tag deepseek">DeepSeek</span>
+    </div>
+    <pre>Write a Google Sheets formula for cell F2.
+
+Sheet "Sales" columns: A=Date, B=Salesperson, C=Product, D=Qty, E=Unit Price, F=Total
+
+What I need:
+- F2 = D2 * E2
+- Use ARRAYFORMULA so it auto-fills all rows
+- Skip row 1 (header)
+- If D or E is empty, show blank — not zero
+
+Formula only. No explanation.</pre>
+  </div>
+
+  <!-- STEP 10 -->
+  <div class="step-header">
+    <div class="step-badge">Step 10</div>
+    <h2>5 Golden Rules — Always Remember These</h2>
+  </div>
+  <p class="step-note">Follow these 5 rules every time you prompt AI for Apps Script or Sheets work.</p>
+
+  <div class="rules-grid">
+    <div class="rule">
+      <div class="rnum">R1</div>
+      <h4>Always Say "Apps Script"</h4>
+      <p>Not just "JavaScript". Say "Google Apps Script" so AI uses SpreadsheetApp, GmailApp — not Node.js APIs.</p>
+    </div>
+    <div class="rule">
+      <div class="rnum">R2</div>
+      <h4>Give Sheet Name + Column Map</h4>
+      <p>"Sheet: Employees, A=ID, B=Name, C=Email, D=Status". Without this, AI invents wrong column names.</p>
+    </div>
+    <div class="rule">
+      <div class="rnum">R3</div>
+      <h4>Show One Row Example</h4>
+      <p>"Row: Name=Ali, Status=Active → send email." One example beats three paragraphs of explanation.</p>
+    </div>
+    <div class="rule">
+      <div class="rnum">R4</div>
+      <h4>Control the Output</h4>
+      <p>"Code only", "short comments", "formula only". Without this, AI writes paragraphs you don't need.</p>
+    </div>
+    <div class="rule">
+      <div class="rnum">R5</div>
+      <h4>Never Start a New Chat</h4>
+      <p>If the answer is 80% right, fix it in the same chat. Say "change the return format" — don't restart.</p>
+    </div>
+  </div>
+
+  <div class="footer-nav">
+    <a href="ep2.html">EP 2: Advanced Techniques <i class="fas fa-arrow-right"></i></a>
+  </div>
+
+</main>
+
+<footer>
+  <p>Developed by <a href="https://www.youtube.com/@rameezimdad" target="_blank">Rameez Scripts</a> — Write 10X Better Google Sheets &amp; Apps Script Code with AI</p>
+</footer>
+
+<script>
+  // scroll progress
+  window.addEventListener('scroll', () => {
+    const h = document.documentElement;
+    document.getElementById('progress').style.width =
+      (h.scrollTop / (h.scrollHeight - h.clientHeight) * 100) + '%';
+  });
+
+  // reveal overlays — runs after DOM ready
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.prompt-card').forEach(card => {
+      const header = card.querySelector('.prompt-card-header');
+      const pre    = card.querySelector('pre');
+      if (!pre || !header) return;
+      if (header.querySelector('.dot.bad')) return; // bad prompts always visible
+
+      // wrap pre
+      const wrap = document.createElement('div');
+      wrap.className = 'prompt-wrap';
+      pre.parentNode.insertBefore(wrap, pre);
+      wrap.appendChild(pre);
+
+      // dark overlay
+      const ov = document.createElement('div');
+      ov.className = 'reveal-overlay';
+      ov.innerHTML = '<div class="rov-inner"><i class="fas fa-eye-slash"></i><span>Click to reveal prompt</span></div>';
+      wrap.appendChild(ov);
+
+      // eye button in header
+      const btn = document.createElement('button');
+      btn.className = 'eye-btn';
+      btn.title = 'Show / Hide';
+      btn.innerHTML = '<i class="fas fa-eye-slash"></i>';
+      header.appendChild(btn);
+
+      function toggle() {
+        wrap.classList.toggle('revealed');
+        const on = wrap.classList.contains('revealed');
+        btn.innerHTML  = on ? '<i class="fas fa-eye"></i>' : '<i class="fas fa-eye-slash"></i>';
+      }
+      btn.addEventListener('click', e => { e.stopPropagation(); toggle(); });
+      ov.addEventListener('click', toggle);
+    });
+  });
+</script>
+</body>
+</html>
