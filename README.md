@@ -1,4 +1,4 @@
-# 🚀 Write 10X Better Code Using AI Prompts — Google Sheets & Apps Script
+# Write 10X Better Code Using AI Prompts — Google Sheets & Apps Script
 
 <div align="center">
 
@@ -10,13 +10,13 @@
 
 **Stop getting garbage code from AI. Learn the exact prompt techniques that get you clean, production-ready Google Sheets formulas and Apps Script code — every single time.**
 
-[▶ Watch on YouTube](https://www.youtube.com/@rameezimdad) • [⭐ Star this repo](#) • [🔔 Subscribe](https://www.youtube.com/@rameezimdad)
+[Watch on YouTube](https://www.youtube.com/@rameezimdad) • [Star this repo](#) • [Subscribe](https://www.youtube.com/@rameezimdad)
 
 </div>
 
 ---
 
-## 🤔 What Is This?
+## What Is This?
 
 A **free, open-source prompt engineering course** specifically for **Google Sheets and Google Apps Script developers**. Two interactive HTML episodes packed with real prompt examples for ChatGPT, Gemini, Claude, and DeepSeek — covering everything from writing your first good prompt to advanced techniques used by professional developers.
 
@@ -24,22 +24,22 @@ A **free, open-source prompt engineering course** specifically for **Google Shee
 
 ---
 
-## 🎯 What You'll Learn
+## What You'll Learn
 
-- ✅ Why vague prompts = broken code (and how to fix it)
-- ✅ The **5 Pillars** of a perfect code prompt
-- ✅ How to write prompts specifically for **ChatGPT, Gemini, Claude & DeepSeek**
-- ✅ **Few-Shot Prompting** — generate 10 functions by showing 2 examples
-- ✅ **Role Prompting** — make AI act like a senior Apps Script developer
-- ✅ **Chain-of-Thought** — debug complex triggers & formulas step by step
-- ✅ **System Prompts** — set your rules once, get perfect code every message
-- ✅ **Iterative Refinement** — build full features layer by layer
-- ✅ Ready-to-copy **prompt cheat sheet** for 6 common scenarios
-- ✅ How to get perfect **ARRAYFORMULA, QUERY, VLOOKUP** formulas instantly
+- Why vague prompts = broken code (and how to fix it)
+- The **5 Pillars** of a perfect code prompt
+- How to write prompts specifically for **ChatGPT, Gemini, Claude & DeepSeek**
+- **Few-Shot Prompting** — generate 10 functions by showing 2 examples
+- **Role Prompting** — make AI act like a senior Apps Script developer
+- **Chain-of-Thought** — debug complex triggers & formulas step by step
+- **System Prompts** — set your rules once, get perfect code every message
+- **Iterative Refinement** — build full features layer by layer
+- Ready-to-copy **prompt cheat sheet** for 6 common scenarios
+- How to get perfect **ARRAYFORMULA, QUERY, VLOOKUP** formulas instantly
 
 ---
 
-## 📺 Course Structure
+## Course Structure
 
 ### Episode 1 — Fundamentals (10 Steps)
 
@@ -60,7 +60,7 @@ A **free, open-source prompt engineering course** specifically for **Google Shee
 
 | Step | Technique | What It Does |
 |------|-----------|--------------|
-| 01 | **Few-Shot Prompting** | Show 2 examples → AI generates 10 functions |
+| 01 | **Few-Shot Prompting** | Show 2 examples, AI generates 10 functions |
 | 02 | **Role Prompting** | AI becomes a senior developer or formula expert |
 | 03 | **Chain-of-Thought** | AI thinks step by step before writing code |
 | 04 | **System Prompts** | Set coding rules once for the entire chat |
@@ -69,7 +69,7 @@ A **free, open-source prompt engineering course** specifically for **Google Shee
 
 ---
 
-## 🤖 AI Models Covered
+## AI Models Covered
 
 | Model | Best For | Prompt Style |
 |-------|----------|-------------|
@@ -80,18 +80,17 @@ A **free, open-source prompt engineering course** specifically for **Google Shee
 
 ---
 
-## ✨ Features
+## Features
 
-- 🔒 **Show/Hide Eye Icon** — prompts hidden by default, reveal on click (great for screen sharing & teaching)
-- 📱 **Fully Responsive** — works perfectly on mobile, tablet, desktop
-- 📊 **Reading Progress Bar** — fixed progress indicator while scrolling
-- 🎨 **Navy Blue Theme** — clean, professional design
-- ⚡ **Zero Dependencies** — pure HTML/CSS/JS, no frameworks needed
-- 🖨️ **Print Friendly** — clean layout for offline reference
+- **Show/Hide Eye Icon** — prompts hidden by default, reveal on click (great for screen sharing & teaching)
+- **Fully Responsive** — works perfectly on mobile, tablet, desktop
+- **Reading Progress Bar** — fixed progress indicator while scrolling
+- **Navy Blue Theme** — clean, professional design
+- **Zero Dependencies** — pure HTML/CSS/JS, no frameworks needed
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ```bash
 # Clone the repo
@@ -101,48 +100,46 @@ git clone https://github.com/rameezscripts/ai-prompt-engineering-google-sheets.g
 open ep1.html
 ```
 
-Or just **[view it live on GitHub Pages](#)** — no setup needed.
-
 ---
 
-## 📁 File Structure
+## File Structure
 
 ```
-📦 ai-prompt-engineering-google-sheets
- ┣ 📄 ep1.html          # Episode 1 — Fundamentals (10 steps)
- ┣ 📄 ep2.html          # Episode 2 — Advanced Techniques (6 steps)
- ┗ 📄 README.md
+ai-prompt-engineering-google-sheets/
+├── ep1.html        # Episode 1 — Fundamentals (10 steps)
+├── ep2.html        # Episode 2 — Advanced Techniques (6 steps)
+└── README.md
 ```
 
 ---
 
-## 💡 Who Is This For?
+## Who Is This For?
 
-- 👨‍💻 **Google Sheets power users** who want to automate with AI
-- 🛠️ **Apps Script developers** tired of getting wrong code from AI
-- 📊 **Business analysts & operations teams** using Google Workspace
-- 🎓 **Students & beginners** learning Google Sheets automation
-- 🚀 **Freelancers** who build Sheets/Apps Script projects for clients
-- 📹 **Content creators** teaching Google Sheets or AI tools
+- **Google Sheets power users** who want to automate with AI
+- **Apps Script developers** tired of getting wrong code from AI
+- **Business analysts & operations teams** using Google Workspace
+- **Students & beginners** learning Google Sheets automation
+- **Freelancers** who build Sheets/Apps Script projects for clients
+- **Content creators** teaching Google Sheets or AI tools
 
 ---
 
-## 🔑 Keywords & Topics
+## Keywords & Topics
 
 `prompt-engineering` `chatgpt-prompts` `google-sheets` `google-apps-script` `google-workspace` `ai-coding` `chatgpt-tutorial` `gemini-ai` `claude-ai` `deepseek` `automation` `javascript` `spreadsheet-automation` `ai-tools` `developer-productivity` `free-course` `10x-developer` `prompt-templates` `sheets-formulas` `arrayformula`
 
 ---
 
-## 🎓 About the Author
+## About the Author
 
 **Rameez Scripts** — Google Sheets & Apps Script developer, educator, and YouTuber. Building practical automation tools and teaching developers how to work smarter with AI.
 
-- 📺 YouTube: [@rameezimdad](https://www.youtube.com/@rameezimdad)
-- 💬 WhatsApp (Custom Projects): [+92 322 408 3545](https://wa.me/923224083545)
+- YouTube: [@rameezimdad](https://www.youtube.com/@rameezimdad)
+- WhatsApp (Custom Projects): [+92 322 408 3545](https://wa.me/923224083545)
 
 ---
 
-## 📄 License
+## License
 
 MIT License — free to use, share, and modify with attribution.
 
@@ -150,7 +147,7 @@ MIT License — free to use, share, and modify with attribution.
 
 <div align="center">
 
-**If this helped you, please ⭐ star the repo and 🔔 subscribe on YouTube!**
+**If this helped you, please star the repo and subscribe on YouTube.**
 
 [![YouTube](https://img.shields.io/badge/Subscribe-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://www.youtube.com/@rameezimdad)
 
